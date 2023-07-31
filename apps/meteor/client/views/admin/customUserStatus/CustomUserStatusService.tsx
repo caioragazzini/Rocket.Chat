@@ -22,7 +22,7 @@ import { useActiveConnections } from './hooks/useActiveConnections';
 const CustomUserStatusService = () => {
 	const t = useTranslation();
 	const result = useActiveConnections();
-	const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
+	//const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
 	const togglePresenceServiceEndpoint = useEndpoint('POST', '/v1/presence.enableBroadcast');
 	const disablePresenceService = useMutation(() => togglePresenceServiceEndpoint());
 	const { data: license, isLoading: licenseIsLoading } = useIsEnterprise();
@@ -52,6 +52,9 @@ const CustomUserStatusService = () => {
 
 	const { current, max, percentage } = result.data;
 
+	const handleToggleService = () => {
+		disablePresenceService.mutate();
+	};
 	return (
 		<>
 			<ContextualbarContent display='flex' flexDirection='column' justifyContent='space-between' color='default'>
@@ -59,9 +62,9 @@ const CustomUserStatusService = () => {
 					<Box display='flex' justifyContent='space-between' mb='x16'>
 						<Box fontScale='p1'>{t('Service_status')}</Box>
 						<ToggleSwitch
-							disabled={disablePresenceService.isLoading || !presenceDisabled || percentage === 100}
-							checked={!presenceDisabled}
-							onChange={() => disablePresenceService.mutate()}
+							disabled={disablePresenceService.isLoading || percentage === 100}
+							checked={!disablePresenceService.isLoading}
+							onChange={handleToggleService}
 						/>
 					</Box>
 					<Box display='flex' fontScale='c1' justifyContent='space-between' mb='x16'>
@@ -69,7 +72,7 @@ const CustomUserStatusService = () => {
 						<Box>{license?.isEnterprise ? current : `${current}/${max}`}</Box>
 					</Box>
 					{!license?.isEnterprise && <ProgressBar percentage={percentage} variant={percentage > 80 ? 'danger' : 'success'} />}
-					{presenceDisabled && (
+					{disablePresenceService.isLoading && (
 						<Margins block='x16'>
 							<Callout type='danger' title={t('Service_disabled')}>
 								{t('Service_disabled_description')}

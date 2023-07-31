@@ -25,7 +25,7 @@ const translateStatusName = (t: ReturnType<typeof useTranslation>, status: (type
 
 export const useStatusItems = (user: IUser): GenericMenuItemProps[] => {
 	const t = useTranslation();
-	const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
+	//const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
 	const setStatus = useEndpoint('POST', '/v1/users.setStatus');
 
 	const setStatusAction = (status: (typeof userStatus.list)['']): void => {
@@ -65,13 +65,13 @@ export const useStatusItems = (user: IUser): GenericMenuItemProps[] => {
 				status: <UserStatus status={modifier} />,
 				content: <MarkdownText content={name} parseEmoji={true} variant='inline' />,
 				onClick: () => setStatusAction(status),
-				disabled: presenceDisabled,
+				//disabled: presenceDisabled,
 			};
 		});
 
 	return [
-		...(presenceDisabled ? [presenceDisabledItem] : []),
+		// ...(presenceDisabled ? [presenceDisabledItem] : []),
 		...statusItems,
-		{ id: 'custom-status', icon: 'emoji', content: t('Custom_Status'), onClick: handleCustomStatus, disabled: presenceDisabled },
+		{ id: 'custom-status', icon: 'emoji', content: t('Custom_Status'), onClick: handleCustomStatus}, //disabled: presenceDisabled },
 	];
 };

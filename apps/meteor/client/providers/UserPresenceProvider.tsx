@@ -10,11 +10,11 @@ type UserPresenceProviderProps = {
 };
 
 const UserPresenceProvider = ({ children }: UserPresenceProviderProps): ReactElement => {
-	const usePresenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
+	// const usePresenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
 
-	useEffect(() => {
-		Presence.setStatus(usePresenceDisabled ? 'disabled' : 'enabled');
-	}, [usePresenceDisabled]);
+	// useEffect(() => {
+	// 	Presence.setStatus(usePresenceDisabled ? 'disabled' : 'enabled');
+	// }, [usePresenceDisabled]);
 
 	return (
 		<UserPresenceContext.Provider

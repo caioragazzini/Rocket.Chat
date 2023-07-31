@@ -22,7 +22,7 @@ const anon = {
 
 const UserAvatarWithStatus = () => {
 	const user = useUser();
-	const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
+	//const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
 
 	const { status = !user ? 'online' : 'offline', username, avatarETag, statusText } = user || anon;
 
@@ -54,7 +54,8 @@ const UserAvatarWithStatus = () => {
 				mie='neg-x2'
 				mbe='neg-x2'
 			>
-				<UserStatus small status={presenceDisabled ? 'disabled' : status} statusText={statusText} />
+				{/* <UserStatus small status={presenceDisabled ? 'disabled' : status} statusText={statusText} /> */}
+				<UserStatus small status={status} statusText={statusText} />
 			</Box>
 		</Box>
 	);

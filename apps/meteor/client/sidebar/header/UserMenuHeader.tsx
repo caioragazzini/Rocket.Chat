@@ -10,7 +10,7 @@ import { useUserDisplayName } from '../../hooks/useUserDisplayName';
 
 const UserMenuHeader = ({ user }: { user: IUser }) => {
 	const t = useTranslation();
-	const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
+	//const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
 	const displayName = useUserDisplayName(user);
 
 	return (
@@ -21,7 +21,8 @@ const UserMenuHeader = ({ user }: { user: IUser }) => {
 			<Box mis='x4' display='flex' overflow='hidden' flexDirection='column' fontScale='p2' mb='neg-x4' flexGrow={1} flexShrink={1}>
 				<Box withTruncatedText w='full' display='flex' alignItems='center' flexDirection='row'>
 					<Margins inline='x4'>
-						<UserStatus status={presenceDisabled ? 'disabled' : user.status} />
+						{/* <UserStatus status={presenceDisabled ? 'disabled' : user.status} /> */}
+						<UserStatus status={user.status} />
 						<Box is='span' withTruncatedText display='inline-block' fontWeight='700'>
 							{displayName}
 						</Box>

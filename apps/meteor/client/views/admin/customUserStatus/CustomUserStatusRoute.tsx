@@ -19,11 +19,12 @@ const CustomUserStatusRoute = (): ReactElement => {
 	const id = useRouteParameter('id');
 	const canManageUserStatus = usePermission('manage-user-status');
 	const { data: license } = useIsEnterprise();
-	const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
+	//const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
 
 	useEffect(() => {
-		presenceDisabled && route.push({ context: 'presence-service' });
-	}, [presenceDisabled, route]);
+		//presenceDisabled && 
+		route.push({ context: 'presence-service' });
+	}, [/*presenceDisabled*/, route]);
 
 	const handleItemClick = (id: string): void => {
 		route.push({

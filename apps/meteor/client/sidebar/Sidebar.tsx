@@ -14,7 +14,7 @@ const Sidebar = () => {
 	const sidebarHideAvatar = !useUserPreference('sidebarDisplayAvatar');
 	const { sidebar } = useLayout();
 	const [bannerDismissed, setBannerDismissed] = useSessionStorage('presence_cap_notifier', false);
-	const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
+	//const presenceDisabled = useSetting<boolean>('Presence_broadcast_disabled');
 
 	const sideBarBackground = css`
 		background-color: ${Palette.surface['surface-tint']};
@@ -37,7 +37,7 @@ const Sidebar = () => {
 				data-qa-opened={sidebar.isCollapsed ? 'false' : 'true'}
 			>
 				<SidebarHeader />
-				{presenceDisabled && !bannerDismissed && <StatusDisabledSection onDismiss={() => setBannerDismissed(true)} />}
+				{/* {presenceDisabled && !bannerDismissed && <StatusDisabledSection onDismiss={() => setBannerDismissed(true)} />} */}
 				<SidebarRoomList />
 				<SidebarFooter />
 			</Box>

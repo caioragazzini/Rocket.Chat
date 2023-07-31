@@ -854,12 +854,12 @@ API.v1.addRoute(
 	{
 		async get() {
 			// if presence broadcast is disabled, return an empty array (all users are "offline")
-			if (settings.get('Presence_broadcast_disabled')) {
-				return API.v1.success({
-					users: [],
-					full: true,
-				});
-			}
+			// if (settings.get('Presence_broadcast_disabled')) {
+			// 	return API.v1.success({
+			// 		users: [],
+			// 		full: true,
+			// 	});
+			// }
 
 			const { from, ids } = this.queryParams;
 
